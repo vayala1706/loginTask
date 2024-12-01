@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+<!-- Omitido -->
+<nav>
+    <ul>
+      {% if users.is_authenticated %}
+      <li><a href="{% url 'tasks:index' %}">Lista de Blogs</a></li>
+      <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+      <li><a href="{% url 'signup' %}">Registro de usuario</a></li>
+      <!-- Añadido -->
+      {% endif %}
+    </ul>
+  </nav>
+  <!-- Omitido -->
+   
+{% block main %}
+<h2>Registro de usuario</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Registrar">
+</form>
+{% endblock %}
